@@ -1,9 +1,27 @@
 class System
   attr_reader :bodies
 
+  @@all_systems = []
+    def self.all_systems
+      @@all_systems
+    end
+
+    def self.galactic_mass
+      all_mass = 0
+      all_systems.each do |system|
+        all_mass += system.total_mass.to_i
+      end
+    return all_mass
+
+    end
+
+
   def initialize
     @bodies = []
+    @@all_systems.push(self)
   end
+
+
 
   def add(new_body)
     @bodies.each do |body|
@@ -25,12 +43,8 @@ class System
     return total_mass
   end
 
-  # @@all_systems = []
-  # 
-  # def self.all_systems(new_system)
-  #   all_systems.push(new_system)
-  # return all_system
-  # end
+
+
     #create an array of all systems
     #iterate through all the systems and run total_mass
     #then store each result in an array and return the sum
